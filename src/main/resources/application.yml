@@ -1,0 +1,27 @@
+spring:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  liquibase:
+    change-log: classpath:db/database.xml
+    contexts: dev
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:batch_integration
+    username: user
+    password: password
+    initialization-mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+file:
+  csv-separator: ç
+  extension: .dat
+  inputdir: file:${user.home}/agibank/data/in
+  output-path:  ${user.home}/agibank/data/out/batch-compilation.done.dat
