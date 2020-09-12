@@ -10,7 +10,7 @@ spring:
 
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:batch_integration
+    url: jdbc:h2:mem:batch_compilation
     username: user
     password: password
     initialization-mode: always
