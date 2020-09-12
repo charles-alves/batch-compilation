@@ -1,3 +1,0 @@
-file:
-  inputdir: file:${user.home}/data/test/in
-  output-path: ${user.home}/data/test/out/batch-compilation.done.dat

@@ -20,7 +20,7 @@ spring:
       ddl-auto: validate
       
   batch:
-    job:      enabled: false
+    job:      enabled: true
 
 file:
   csv-separator: ç
