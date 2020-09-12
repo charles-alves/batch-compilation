@@ -1,8 +1,8 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl;
+package br.com.charlesalves.batchcompilation.lineMappers.impl;
 
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.DbcLineMapper;
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.domain.Client;
+import br.com.charlesalves.batchcompilation.lineMappers.DbcLineMapper;
 
 public class ClientLineMapper implements DbcLineMapper {
 

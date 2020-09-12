@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch;
+package br.com.charlesalves.batchcompilation.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -12,54 +12,53 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.charlesalves.batchcompilation.batch.tasklets.CleanDatabaseTasklet;
-import br.com.charlesalves.batchcompilation.batch.tasklets.ExportFileTasklet;
 import br.com.charlesalves.batchcompilation.dao.BachDataDao;
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.domain.UnvalidBatchData;
+import br.com.charlesalves.batchcompilation.tasklets.CleanDatabaseTasklet;
+import br.com.charlesalves.batchcompilation.tasklets.ExportFileTasklet;
 
 @Configuration
 @EnableBatchProcessing
-public class JobConfig {
-
-	private JobBuilderFactory jobBuilderFactory;
-
-	private StepBuilderFactory stepBuilderFactory;
-
-	public JobConfig(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
-		this.jobBuilderFactory = jobBuilderFactory;
-		this.stepBuilderFactory = stepBuilderFactory;
-	}
+public class BatchConfig {
 
 	@Bean("importFileStep")
-	public Step importFileStep(MultiResourceItemReader<BatchData> reader, BachDataDao bachDataDao) {
+	public Step importFileStep(
+		StepBuilderFactory stepBuilderFactory,
+		MultiResourceItemReader<BatchData> reader,
+		BachDataDao bachDataDao
+	) {
 		return stepBuilderFactory.get("importFileStep")
 			.<BatchData, BatchData>chunk(100)
 			.reader(reader)
 			.processor((ItemProcessor<BatchData, BatchData>) item -> !(item instanceof UnvalidBatchData) ? item : null)
 			.writer(bachDataDao::saveAll)
-			.allowStartIfComplete(true)
 			.build();
 	}
 
 	@Bean("exportFileStep")
-	public Step exportFileStep(ExportFileTasklet exportFileTasklet) {
+	public Step exportFileStep(
+		StepBuilderFactory stepBuilderFactory,
+		ExportFileTasklet exportFileTasklet
+	) {
 		return stepBuilderFactory.get("exportFileTasklet")
 			.tasklet(exportFileTasklet)
-			.allowStartIfComplete(true)
 			.build();
 	}
 
 	@Bean("cleanDatabaseStep")
-	public Step cleanDatabaseStep(CleanDatabaseTasklet cleanDatabaseTasklet) {
+	public Step cleanDatabaseStep(
+		StepBuilderFactory stepBuilderFactory,
+		CleanDatabaseTasklet cleanDatabaseTasklet
+	) {
 		return stepBuilderFactory.get("cleanTasklet")
 			.tasklet(cleanDatabaseTasklet)
-			.allowStartIfComplete(true)
 			.build();
 	}
 
 	@Bean
 	public Job importMensagensJob(
+		JobBuilderFactory jobBuilderFactory,
 		@Qualifier("importFileStep") Step importFileStep,
 		@Qualifier("exportFileStep") Step exportFileStep,
 		@Qualifier("cleanDatabaseStep") Step cleanDatabaseStep

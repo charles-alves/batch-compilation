@@ -1,5 +1,4 @@
 spring:
-
   h2:
     console:
       enabled: true
@@ -19,9 +18,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+      
+  batch:
+    job:      enabled: false
 
 file:
   csv-separator: ç
   extension: .dat
-  inputdir: file:${user.home}/agibank/data/in
-  output-path:  ${user.home}/agibank/data/out/batch-compilation.done.dat
+  inputdir: file:${user.home}/data/in
+  output-path:  ${user.home}/data/out/batch-compilation.done.dat

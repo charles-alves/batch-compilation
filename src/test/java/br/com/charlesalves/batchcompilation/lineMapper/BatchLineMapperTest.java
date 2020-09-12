@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper;
+package br.com.charlesalves.batchcompilation.lineMapper;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -11,6 +11,8 @@ import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.domain.Client;
 import br.com.charlesalves.batchcompilation.domain.Sale;
 import br.com.charlesalves.batchcompilation.domain.Salesman;
+import br.com.charlesalves.batchcompilation.factories.DbcLineMapperFactory;
+import br.com.charlesalves.batchcompilation.lineMappers.BatchLineMapper;
 
 public class BatchLineMapperTest {
 

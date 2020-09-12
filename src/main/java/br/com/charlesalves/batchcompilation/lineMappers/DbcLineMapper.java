@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper;
+package br.com.charlesalves.batchcompilation.lineMappers;
 
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 

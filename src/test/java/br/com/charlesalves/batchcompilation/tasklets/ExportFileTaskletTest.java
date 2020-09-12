@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.tasklets;
+package br.com.charlesalves.batchcompilation.tasklets;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+
+import br.com.charlesalves.batchcompilation.tasklets.ExportFileTasklet;
 
 @SpringBootTest
 @Sql(scripts = "/insert-data.sql")
@@ -75,5 +77,4 @@ public class ExportFileTaskletTest {
 			.append("Margarida")
 			.toString();
 	}
-
 }

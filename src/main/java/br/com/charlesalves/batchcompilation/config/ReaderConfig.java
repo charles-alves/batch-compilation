@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers;
+package br.com.charlesalves.batchcompilation.config;
 
 import java.io.IOException;
 
@@ -13,16 +13,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.BatchLineMapper;
 import br.com.charlesalves.batchcompilation.domain.BatchData;
+import br.com.charlesalves.batchcompilation.lineMappers.BatchLineMapper;
 
 @Configuration
-public class ReaderConfiguration {
+public class ReaderConfig {
 
 	private String inputDir;
 	private String extension;
 
-	public ReaderConfiguration(@Value("${file.inputdir}") String inputDir,
+	public ReaderConfig(@Value("${file.inputdir}") String inputDir,
 			@Value("${file.extension}") String extension) {
 		this.inputDir = inputDir;
 		this.extension = extension;

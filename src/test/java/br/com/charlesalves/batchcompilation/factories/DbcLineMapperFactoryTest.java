@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper;
+package br.com.charlesalves.batchcompilation.factories;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -6,10 +6,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.ClientLineMapper;
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.SaleLineMapper;
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.SalesmanLineMapper;
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.UndefinedLineMapper;
+import br.com.charlesalves.batchcompilation.factories.DbcLineMapperFactory;
+import br.com.charlesalves.batchcompilation.lineMappers.DbcLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.ClientLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.SaleLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.SalesmanLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.UndefinedLineMapper;
 
 public class DbcLineMapperFactoryTest {
 

@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.tasklets;
+package br.com.charlesalves.batchcompilation.tasklets;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;

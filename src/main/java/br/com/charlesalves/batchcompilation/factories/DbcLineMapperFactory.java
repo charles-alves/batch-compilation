@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper;
+package br.com.charlesalves.batchcompilation.factories;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +8,11 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.ClientLineMapper;
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.SaleLineMapper;
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.SalesmanLineMapper;
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl.UndefinedLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.DbcLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.ClientLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.SaleLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.SalesmanLineMapper;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.UndefinedLineMapper;
 
 @Component
 public class DbcLineMapperFactory {

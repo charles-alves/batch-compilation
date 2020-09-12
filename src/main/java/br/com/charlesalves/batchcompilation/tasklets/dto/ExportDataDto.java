@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.tasklets.dto;
+package br.com.charlesalves.batchcompilation.tasklets.dto;
 
 public class ExportDataDto {
 

@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl;
+package br.com.charlesalves.batchcompilation.lineMappers.impl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.DbcLineMapper;
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.domain.Sale;
 import br.com.charlesalves.batchcompilation.domain.SaleItem;
+import br.com.charlesalves.batchcompilation.lineMappers.DbcLineMapper;
 
 public class SaleLineMapper implements DbcLineMapper {
 

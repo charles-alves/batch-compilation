@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl;
+package br.com.charlesalves.batchcompilation.lineMapper.impl;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import br.com.charlesalves.batchcompilation.domain.Sale;
 import br.com.charlesalves.batchcompilation.domain.SaleItem;
+import br.com.charlesalves.batchcompilation.lineMappers.impl.SaleLineMapper;
 
 public class SaleLineMapperTest {
 

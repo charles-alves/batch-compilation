@@ -1,16 +1,17 @@
-package br.com.charlesalves.batchcompilation;
+package br.com.charlesalves.batchcompilation.config;
 
-import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-//@Configuration
-//@EnableScheduling
+@Configuration
+@EnableScheduling
 public class SchedulerConfig {
 
 	private JobLauncher jobLauncher;
@@ -23,12 +24,10 @@ public class SchedulerConfig {
 
 	@Scheduled(cron = "0 */1 * * * *")
 	public void perform() throws Exception {
-		System.out.println("Job Started at :" + new Date());
+		JobParameters param = new JobParametersBuilder()
+			.addString("jobId", UUID.randomUUID().toString())
+			.toJobParameters();
 
-		JobParameters param = new JobParametersBuilder().toJobParameters();
-
-		JobExecution execution = jobLauncher.run(importMensagensJob, param);
-
-		System.out.println("Job finished with status :" + execution.getStatus());
+		jobLauncher.run(importMensagensJob, param);
 	}
 }

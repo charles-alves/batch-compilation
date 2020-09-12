@@ -1,4 +1,4 @@
-package br.com.charlesalves.batchcompilation.batch.tasklets;
+package br.com.charlesalves.batchcompilation.tasklets;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,12 +15,12 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import br.com.charlesalves.batchcompilation.batch.tasklets.dto.ExportDataDto;
 import br.com.charlesalves.batchcompilation.dao.ClientDao;
 import br.com.charlesalves.batchcompilation.dao.SaleDao;
 import br.com.charlesalves.batchcompilation.dao.SalesmanDao;
 import br.com.charlesalves.batchcompilation.dao.dto.SalesReduceDto;
 import br.com.charlesalves.batchcompilation.domain.Sale;
+import br.com.charlesalves.batchcompilation.tasklets.dto.ExportDataDto;
 
 @Component
 public class ExportFileTasklet implements Tasklet {

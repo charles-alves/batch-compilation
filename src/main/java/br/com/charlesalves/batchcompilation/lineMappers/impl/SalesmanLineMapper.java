@@ -1,10 +1,10 @@
-package br.com.charlesalves.batchcompilation.batch.readers.lineMapper.impl;
+package br.com.charlesalves.batchcompilation.lineMappers.impl;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import br.com.charlesalves.batchcompilation.batch.readers.lineMapper.DbcLineMapper;
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.domain.Salesman;
+import br.com.charlesalves.batchcompilation.lineMappers.DbcLineMapper;
 
 public class SalesmanLineMapper implements DbcLineMapper {
 
