@@ -6,28 +6,41 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
-import br.com.charlesalves.batchcompilation.tasklets.ExportFileTasklet;
+import br.com.charlesalves.batchcompilation.util.IOUtils;
 
 @SpringBootTest
+@ActiveProfiles("test")
+@TestInstance(Lifecycle.PER_CLASS)
 @Sql(scripts = "/insert-data.sql")
 @Sql(scripts = "/clean-up-data.sql", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
 public class ExportFileTaskletTest {
 
 	@Autowired
 	private ExportFileTasklet exportFileTasklet;
+
+	@Value("${file.testDir}")
+	private String testDir;
 
 	@Value("${file.output-path}")
 	private String outputPath;
@@ -36,6 +49,21 @@ public class ExportFileTaskletTest {
 	private String separator;
 
 	private File outputFile;
+
+	@BeforeAll
+	public void setupAll() throws URISyntaxException, IOException {
+		Path source = Paths.get(ClassLoader.getSystemResource("sales.dat").toURI());
+		Path target = Paths.get(testDir + "/in/sales.dat");
+
+		IOUtils.copy(source, target);
+	}
+
+	@AfterAll
+	public void terdownAll() throws IOException {
+		File testDirFile = new File(testDir);
+
+		FileUtils.deleteDirectory(testDirFile);
+	}
 
 	@BeforeEach
 	public void setup() {

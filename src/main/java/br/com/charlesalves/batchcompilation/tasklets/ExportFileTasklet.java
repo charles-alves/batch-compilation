@@ -21,6 +21,7 @@ import br.com.charlesalves.batchcompilation.dao.SalesmanDao;
 import br.com.charlesalves.batchcompilation.dao.dto.SalesReduceDto;
 import br.com.charlesalves.batchcompilation.domain.Sale;
 import br.com.charlesalves.batchcompilation.tasklets.dto.ExportDataDto;
+import br.com.charlesalves.batchcompilation.util.IOUtils;
 
 @Component
 public class ExportFileTasklet implements Tasklet {
@@ -72,10 +73,15 @@ public class ExportFileTasklet implements Tasklet {
 
 	private void exportData(String line) {
 		Path path = Paths.get(outputPath);
+		createParentFolders(path);
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
 			writer.write(line);
 		} catch (IOException e) {
 		}
+	}
+
+	private void createParentFolders(Path path) {
+		IOUtils.createParentDir(path.toFile());
 	}
 }

@@ -49,7 +49,7 @@ public class ReaderConfig {
 
 	private Resource[] getResources() {
 		try {
-			return new PathMatchingResourcePatternResolver().getResources(inputDir + "/*" + extension);
+			return new PathMatchingResourcePatternResolver().getResources("file:" + inputDir + "/*" + extension);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
