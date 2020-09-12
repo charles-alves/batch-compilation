@@ -10,13 +10,13 @@ Batch compiletion é um projeto desenvolvido para o processamento de arquivos ba
   003ç08ç[1-34-10,2-33-1.50,3-40-0.10]çPaulo
 ```
 
-e compilado em um arquivo que demonstre a quantidade de clientes, quantidade de vendedores id da venda mais cara e o pior vendedor, o exemplo acima geraria a saída.
+e compilado em um arquivo que demonstre a quantidade de clientes, quantidade de vendedores, id da venda mais cara e o nome do pior vendedor, o exemplo acima geraria a saída.
 
 ```
 2ç2ç10çPaulo
 ```
 # Configuração
-Toda a configuração da aplicação pode ser encontrada no arquivo application.yml que se encontra no diretório src/main/resources, por padrão o diretório de entrada deve estar em `${userhome}/agibank/data/in` e o arquivo de saída será gerado em `${userhome}/agibank/data/out/batch-compilation.done.dat`
+Toda a configuração da aplicação pode ser encontrada no arquivo application.yml que se encontra no diretório `src/main/resources`, por padrão o diretório de entrada deve estar em `${userhome}/agibank/data/in` e o arquivo de saída será gerado em `${userhome}/agibank/data/out/batch-compilation.done.dat`
 
 ## Execução
 Para executar o projeto basta acessar seu diretório e executar o comando
