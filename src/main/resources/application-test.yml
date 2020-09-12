@@ -1,4 +1,4 @@
 file:
-  testDir: ${user.home}/data/test
-  inputdir: ${file.testDir}/in
-  output-path:  ${file.testDir}/out/batch-compilation.done.dat
+  testDir: ${user.home}/test
+  inputdir: ${file.testDir}/data/in
+  output-path:  ${file.testDir}/data/out/batch-compilation.done.dat
