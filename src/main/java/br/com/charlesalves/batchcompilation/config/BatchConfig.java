@@ -7,12 +7,12 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.file.MultiResourceItemReader;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.charlesalves.batchcompilation.dao.BachDataDao;
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.domain.UnvalidBatchData;
 import br.com.charlesalves.batchcompilation.tasklets.CleanDatabaseTasklet;
@@ -26,13 +26,13 @@ public class BatchConfig {
 	public Step importFileStep(
 		StepBuilderFactory stepBuilderFactory,
 		MultiResourceItemReader<BatchData> reader,
-		BachDataDao bachDataDao
+		JpaItemWriter<BatchData> importWriter
 	) {
 		return stepBuilderFactory.get("importFileStep")
 			.<BatchData, BatchData>chunk(100)
 			.reader(reader)
 			.processor((ItemProcessor<BatchData, BatchData>) item -> !(item instanceof UnvalidBatchData) ? item : null)
-			.writer(bachDataDao::saveAll)
+			.writer(importWriter)
 			.build();
 	}
 
