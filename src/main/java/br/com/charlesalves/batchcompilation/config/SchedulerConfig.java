@@ -22,7 +22,7 @@ public class SchedulerConfig {
 		this.importMensagensJob = importMensagensJob;
 	}
 
-	@Scheduled(cron = "0 */1 * * * *")
+	@Scheduled(fixedRate = 60000)
 	public void perform() throws Exception {
 		JobParameters param = new JobParametersBuilder()
 			.addString("jobId", UUID.randomUUID().toString())
