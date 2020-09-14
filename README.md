@@ -22,7 +22,7 @@ Toda a configuração da aplicação pode ser encontrada no arquivo application.
 Para executar o projeto basta acessar seu diretório e executar o comando
 ```
 // Windows
-gradlew.bat clean bootRun
+./gradlew.bat clean bootRun
 
 //Linux
 .\gradlew clean bootRun
@@ -32,7 +32,7 @@ gradlew.bat clean bootRun
 Os testes podem ser executados de forma semelhante a execução padrão utilizando os comandos
 ```
 // Windows
-gradlew.bat clean test
+./gradlew.bat clean test
 
 //Linux
 .\gradlew clean test
