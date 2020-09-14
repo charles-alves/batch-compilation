@@ -15,18 +15,24 @@ public class IOUtils {
 
 	public static boolean createParentDir(File file) {
 		File parentFile = file.getParentFile();
+		return mkdirs(parentFile);
+	}
 
-		if (!parentFile.exists()) {
-			return parentFile.mkdirs();
+	public static boolean mkdirs(String path) {
+		File directory = new File(path);
+		return mkdirs(directory);
+	}
+
+	private static boolean mkdirs(File directory) {
+		if (!directory.exists()) {
+			return directory.mkdirs();
 		}
-
 		return true;
 	}
 
 	public static void copy(String source, String target) throws IOException {
 		Path sourcePath = Paths.get(source);
 		Path targetPath = Paths.get(target);
-
 		copy(sourcePath, targetPath);
 	}
 

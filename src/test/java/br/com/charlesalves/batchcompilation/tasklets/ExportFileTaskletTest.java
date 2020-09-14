@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +22,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
+import br.com.charlesalves.batchcompilation.dao.BachDataDao;
+
 @SpringBootTest
 @ActiveProfiles("test")
 @Sql(scripts = "/insert-data.sql")
@@ -30,6 +32,9 @@ public class ExportFileTaskletTest {
 
 	@Autowired
 	private ExportFileTasklet exportFileTasklet;
+
+	@Autowired
+	private BachDataDao bachDataDao;
 
 	@Value("${file.testDir}")
 	private String testDir;
@@ -84,5 +89,15 @@ public class ExportFileTaskletTest {
 			.append(separator)
 			.append("Margarida")
 			.toString();
+	}
+
+	@Test
+	public void testExportEmptyDatabase() throws Exception {
+		bachDataDao.deleteAll();
+
+		RepeatStatus status = exportFileTasklet.execute(null, null);
+
+		assertThat(status, is(equalTo(RepeatStatus.FINISHED)));
+		assertThat(outputFile.exists(), is(false));
 	}
 }

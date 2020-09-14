@@ -17,6 +17,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import br.com.charlesalves.batchcompilation.dao.BachDataDao;
 import br.com.charlesalves.batchcompilation.dao.ClientDao;
 import br.com.charlesalves.batchcompilation.dao.SaleDao;
 import br.com.charlesalves.batchcompilation.dao.SalesmanDao;
@@ -30,14 +31,16 @@ public class ExportFileTasklet implements Tasklet {
 
 	Logger logger = LoggerFactory.getLogger(ExportFileTasklet.class);
 
+	private BachDataDao bachDataDao;
 	private ClientDao clientDao;
 	private SaleDao saleDao;
 	private SalesmanDao salesmanDao;
 	private String outputPath;
 	private String separator;
 
-	public ExportFileTasklet(ClientDao clientDao, SaleDao saleDao, SalesmanDao salesmanDao,
+	public ExportFileTasklet(BachDataDao bachDataDao, ClientDao clientDao, SaleDao saleDao, SalesmanDao salesmanDao,
 			@Value("${file.output-path}") String outputPath, @Value("${file.csv-separator}") String separator) {
+		this.bachDataDao = bachDataDao;
 		this.clientDao = clientDao;
 		this.saleDao = saleDao;
 		this.salesmanDao = salesmanDao;
@@ -47,6 +50,12 @@ public class ExportFileTasklet implements Tasklet {
 
 	@Override
 	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+		long count = bachDataDao.count();
+
+		if (count == 0) {
+			return RepeatStatus.FINISHED;
+		}
+
 		ExportDataDto exportData = createExportData();
 		String line = exportData.toString(separator);
 		exportData(line);
