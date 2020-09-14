@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -25,6 +27,8 @@ import br.com.charlesalves.batchcompilation.util.IOUtils;
 
 @Component
 public class ExportFileTasklet implements Tasklet {
+
+	Logger logger = LoggerFactory.getLogger(ExportFileTasklet.class);
 
 	private ClientDao clientDao;
 	private SaleDao saleDao;
@@ -78,6 +82,7 @@ public class ExportFileTasklet implements Tasklet {
 		try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
 			writer.write(line);
 		} catch (IOException e) {
+			logger.error("Não foi possível realizar a escrita no arquivo {}", outputPath);
 		}
 	}
 

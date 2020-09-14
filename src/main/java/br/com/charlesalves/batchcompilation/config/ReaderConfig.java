@@ -2,6 +2,8 @@ package br.com.charlesalves.batchcompilation.config;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.MultiResourceItemReader;
@@ -15,9 +17,12 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import br.com.charlesalves.batchcompilation.domain.BatchData;
 import br.com.charlesalves.batchcompilation.lineMappers.BatchLineMapper;
+import br.com.charlesalves.batchcompilation.util.IOUtils;
 
 @Configuration
 public class ReaderConfig {
+
+	Logger logger = LoggerFactory.getLogger(ReaderConfig.class);
 
 	private String inputDir;
 	private String extension;
@@ -49,10 +54,11 @@ public class ReaderConfig {
 
 	private Resource[] getResources() {
 		try {
+			IOUtils.mkdirs(inputDir);
 			return new PathMatchingResourcePatternResolver().getResources("file:" + inputDir + "/*" + extension);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			logger.warn("Não foi possível realizar a leitura dos arquivos de entrada", e);
+			return new Resource[0];
 		}
 	}
-
 }
