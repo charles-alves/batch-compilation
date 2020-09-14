@@ -21,7 +21,7 @@ insert into sales (id, sale_id, silesman_name, amount) values (10, 3, 'José', 5
 insert into sales (id, sale_id, silesman_name, amount) values (11, 2, 'Maria', 150.0);
 insert into sales (id, sale_id, silesman_name, amount) values (12, 1, 'Margarida', 10.0);
 
-insert into sales_items (id, sale_id, item_id, quantity, price) values (13, 4, 5, 1, 30.0);
-insert into sales_items (id, sale_id, item_id, quantity, price) values (14, 3, 6, 1, 50.0);
-insert into sales_items (id, sale_id, item_id, quantity, price) values (15, 2, 7, 1, 150.0);
-insert into sales_items (id, sale_id, item_id, quantity, price) values (16, 1, 8, 1, 10.0);
+insert into sales_items (id, sale_id, item_id, quantity, price) values (13, 9, 5, 1, 80.0);
+insert into sales_items (id, sale_id, item_id, quantity, price) values (14, 10, 6, 1, 50.0);
+insert into sales_items (id, sale_id, item_id, quantity, price) values (15, 11, 7, 1, 150.0);
+insert into sales_items (id, sale_id, item_id, quantity, price) values (16, 12, 8, 1, 10.0);

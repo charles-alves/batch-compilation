@@ -27,5 +27,13 @@
         <constraints nullable="false"/>
       </column>
     </createTable>
+
+    <addForeignKeyConstraint 
+	    constraintName="sales_sales_items_fk"
+	    referencedTableName="sales"
+	    referencedColumnNames="id"
+	    baseTableName="sales_items"
+	    baseColumnNames="sale_id"
+    />
   </changeSet>
 </databaseChangeLog>

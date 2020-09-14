@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,11 +14,10 @@ import javax.persistence.Table;
 @Table(name = "sales")
 public class Sale extends BatchData {
 
-	@Column(name = "saleId", nullable = false)
+	@Column(name = "saleId", nullable = false, table = "sales")
 	private Long saleId;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-	@JoinColumn(name = "sale_id")
+	@OneToMany(mappedBy = "sale", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private List<SaleItem> items;
 
 	@Column(name = "silesman_name", nullable = false)
